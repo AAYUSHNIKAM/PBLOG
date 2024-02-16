@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Music Instrument Teacher</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+
+
+    header, footer {
+      background-color: #333;
+      color: #fff;
+      padding: 1em;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    main {
+      padding: 1em;
+    }
+
+    section {
+      margin-bottom: 1em;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    button {
+      padding: 0.5em 1em;
+      font-size: 1em;
+      margin-right: 1em;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ddd;
+    }
+
+    /* Animation for the character */
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .character {
+      width: 50vh;
+      height: 50vh;
+      background-image: url('teacher.png');
+      background-size: contain;
+      animation: bounce 3s infinite;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Virtual Music Instrument Teacher</h1>
+  </header>
+  <main>
+    
+    <section id="lesson-instructions" class="hidden">
+      <!-- Instructions and animations will be displayed here -->
+      <div class="character"></div>
+    </section>
+    <section id="user-performance" class="hidden">
+      <!-- User performance evaluation will be displayed here -->
+    </section>
+  </main>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const fluteBtn = document.getElementById('flute-btn');
+      const pianoBtn = document.getElementById('piano-btn');
+      const guitarBtn = document.getElementById('guitar-btn');
+      const lessonInstructions = document.getElementById('lesson-instructions');
+      const userPerformance = document.getElementById('user-performance');
+
+      fluteBtn.addEventListener('click', function() {
+        showLessonInstructions('Flute');
+      });
+
+      pianoBtn.addEventListener('click', function() {
+        showLessonInstructions('Piano');
+      });
+
+      guitarBtn.addEventListener('click', function() {
+        showLessonInstructions('Guitar');
+      });
+
+      function showLessonInstructions(instrument) {
+        // Logic to show lesson instructions for the selected instrument
+        // You can use animations or display text instructions here
+        lessonInstructions.classList.remove('hidden');
+        userPerformance.classList.add('hidden');
+      }
+
+      // Add more functionality for displaying performance evaluation and animations as needed
+    });
+  </script>
+</body>
+</html>

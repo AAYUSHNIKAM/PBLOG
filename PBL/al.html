@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Module Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header, footer {
+      background-color: #333;
+      color: #fff;
+      padding: 1em;
+      text-align: center;
+    }
+
+    main {
+      padding: 1em;
+    }
+
+    section {
+      margin-bottom: 2em;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .instruction-btn {
+      padding: 0.5em 1em;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .instruction-image {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .next-module-btn {
+      display: none;
+      margin-top: 1em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Multi-Module Website</h1>
+  </header>
+  <main>
+    <section id="module-1">
+      <h2>Module 1</h2>
+      <img src="teacher.png" alt="Module 1 Image" class="instruction-image" height="100px">
+      <div class="instructions">
+        <p class="instruction">Instruction 1 for Module 1</p>
+        <p class="instruction hidden">Instruction 2 for Module 1</p>
+        <p class="instruction hidden">Instruction 3 for Module 1</p>
+        <p class="instruction hidden">Instruction 4 for Module 1</p>
+      </div>
+      <button class="instruction-btn" onclick="nextInstruction(1)">Next Instruction</button>
+      <button class="next-module-btn" onclick="nextModule(1)">Next Module</button>
+    </section>
+
+    <section id="module-2" class="hidden">
+      <h2>Module 2</h2>
+      <img src="teacher.png" alt="Module 2 Image" class="instruction-image" height="100px">
+      <div class="instructions">
+        <p class="instruction">Instruction 1 for Module 2</p>
+        <p class="instruction hidden">Instruction 2 for Module 2</p>
+        <p class="instruction hidden">Instruction 3 for Module 2</p>
+        <p class="instruction hidden">Instruction 4 for Module 2</p>
+      </div>
+      <button class="instruction-btn" onclick="nextInstruction(2)">Next Instruction</button>
+      <button class="next-module-btn" onclick="nextModule(2)">Next Module</button>
+    </section>
+
+    <!-- Add similar sections for modules 3 to 10 -->
+
+    <section id="module-3" class="hidden">
+      <h2>Module 3</h2>
+      <img src="module3_image.jpg" alt="Module 3 Image" class="instruction-image">
+      <div class="instructions">
+        <p class="instruction">Instruction 1 for Module 3</p>
+        <p class="instruction hidden">Instruction 2 for Module 3</p>
+        <p class="instruction hidden">Instruction 3 for Module 3</p>
+        <p class="instruction hidden">Instruction 4 for Module 3</p>
+      </div>
+      <button class="instruction-btn" onclick="nextInstruction(3)">Next Instruction</button>
+      <button class="next-module-btn" onclick="nextModule(3)">Next Module</button>
+    </section>
+
+    <!-- Add similar sections for modules 4 to 10 -->
+
+  </main>
+  <footer>
+    <p>&copy; 2024 Multi-Module Website</p>
+  </footer>
+  <script>
+    const moduleCount = 10;
+
+    function nextInstruction(module) {
+      const instructions = document.querySelectorAll(`#module-${module} .instruction`);
+      const currentIndex = Array.from(instructions).findIndex(instruction => !instruction.classList.contains('hidden'));
+      
+      if (currentIndex >= 0 && currentIndex < instructions.length - 1) {
+        instructions[currentIndex].classList.add('hidden');
+        instructions[currentIndex + 1].classList.remove('hidden');
+      }
+
+      const nextInstructionIndex = currentIndex + 1;
+      if (nextInstructionIndex === instructions.length - 1) {
+        document.querySelector(`#module-${module} .instruction-btn`).classList.add('hidden');
+        document.querySelector(`#module-${module} .next-module-btn`).style.display = 'block';
+      }
+    }
+
+    function nextModule(module) {
+      if (module < moduleCount) {
+        document.getElementById(`module-${module}`).classList.add('hidden');
+        document.getElementById(`module-${module + 1}`).classList.remove('hidden');
+      }
+    }
+  </script>
+</body>
+</html>
+
